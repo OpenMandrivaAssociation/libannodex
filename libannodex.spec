@@ -1,10 +1,11 @@
 %define	major 1
-%define libname	%mklibname annodex %{major}
+%define libname %mklibname annodex %{major}
+%define develname %mklibname annodex -d
 
 Summary:	Library for annotating and indexing networked media
 Name:		libannodex
 Version:	0.7.3
-Release:	%mkrel 2
+Release:	%mkrel 3
 Group:		System/Libraries
 License:	BSD
 URL:		http://www.annodex.net/
@@ -35,13 +36,15 @@ Group:          System/Libraries
 libannodex is a library to provide reading and writing of Annodex files and
 streams.
 
-%package -n	%{libname}-devel
+%package -n	%{develname}
 Summary:	Files needed for development using libannodex
 Group:		Development/C
-Provides:	%{name}-devel = %{version}
 Requires:	%{libname} = %{version}
+Provides:	%{name}-devel = %{version}-%{release}
+Provides:	lib%{name}-devel = %{version}-%{release}
+Obsoletes:	%{mklibname annodex 1 -d}
 
-%description -n	%{libname}-devel
+%description -n	%{develname}
 libannodex is a library to provide reading and writing of Annodex files and
 streams.
 
@@ -96,7 +99,7 @@ rm -rf %{buildroot}%{_docdir}/libannodex
 %dir %{_libdir}/annodex/importers
 %{_libdir}/annodex/importers/*.so
 
-%files -n %{libname}-devel
+%files -n %{develname}
 %defattr(-,root,root)
 %doc doc/libannodex/html/* TODO
 %dir %{_includedir}/annodex
@@ -112,5 +115,3 @@ rm -rf %{buildroot}%{_docdir}/libannodex
 %defattr(-,root,root)
 %{_bindir}/anx*
 %{_mandir}/man1/*
-
-
