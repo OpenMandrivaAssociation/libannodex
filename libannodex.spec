@@ -5,7 +5,7 @@
 Summary:	Library for annotating and indexing networked media
 Name:		libannodex
 Version:	0.7.3
-Release:	%mkrel 3
+Release:	%mkrel 4
 Group:		System/Libraries
 License:	BSD
 URL:		http://www.annodex.net/
