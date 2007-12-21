@@ -22,6 +22,7 @@ BuildRequires:	liboggz-devel >= 0.9.1
 BuildRequires:	libcmml-devel >= 0.8
 BuildRequires:	libsndfile-devel
 BuildRequires:	expat-devel
+BuildRoot:	%{_tmppath}/%{name}-%{version}-root
 
 %description
 libannodex is a library to provide reading and writing of Annodex files and
