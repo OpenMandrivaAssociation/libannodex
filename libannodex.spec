@@ -5,7 +5,7 @@
 Summary:	Library for annotating and indexing networked media
 Name:		libannodex
 Version:	0.7.3
-Release:	%mkrel 4
+Release:	%mkrel 5
 Group:		System/Libraries
 License:	BSD
 URL:		http://www.annodex.net/
@@ -13,6 +13,7 @@ Source0:	http://www.annodex.net/software/libannodex/download/%{name}-%{version}.
 Patch0:		libannodex.man.patch
 Patch1:		libannodex-0.7.3-gcc4.diff
 Patch2:		libannodex-0.7.3-avoid-version.diff
+Patch3:		libannodex-malloc_fix.diff
 BuildRequires:	autoconf2.5
 BuildRequires:	libtool
 BuildRequires:	doxygen
@@ -65,10 +66,11 @@ media library.
 %patch0 -p0
 %patch1 -p0
 %patch2 -p0
+%patch3 -p0
 
 %build
 rm -f configure
-libtoolize --copy --force; aclocal -I m4; autoconf; automake
+libtoolize --copy --force --ltdl; aclocal -I m4; autoconf; automake
 
 %configure2_5x
 
@@ -78,7 +80,7 @@ libtoolize --copy --force; aclocal -I m4; autoconf; automake
 make check
 
 %install
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
+rm -rf %{buildroot}
 
 %makeinstall_std
 
@@ -94,7 +96,7 @@ rm -rf %{buildroot}%{_docdir}/libannodex
 %endif
 
 %clean
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
+rm -rf %{buildroot}
 
 %files -n %{libname}
 %defattr(-,root,root)
