@@ -1,0 +1,28 @@
+Index: configure.ac
+===================================================================
+--- configure.ac	(revision 2140)
++++ configure.ac	(working copy)
+@@ -38,8 +38,8 @@
+ fi
+   
+ # Check for docbook
+-AC_CHECK_PROG(HAVE_DOCBOOKTOMAN, docbook-to-man, true, false)
+-AM_CONDITIONAL(HAVE_DOCBOOKTOMAN,$HAVE_DOCBOOKTOMAN)
++AC_CHECK_PROGS(DOCBOOKTOMAN, docbook-to-man docbook2man, false)
++AM_CONDITIONAL(HAVE_DOCBOOKTOMAN, test "x$DOCBOOKTOMAN" != "xfalse")
+ AC_CHECK_PROG(HAVE_DOCBOOK2HTML, docbook2html, true, false)
+ AM_CONDITIONAL(HAVE_DOCBOOK2HTML,$HAVE_DOCBOOK2HTML)
+ 
+Index: doc/Makefile.am
+===================================================================
+--- doc/Makefile.am	(revision 2140)
++++ doc/Makefile.am	(working copy)
+@@ -64,7 +64,7 @@
+ 
+ if HAVE_DOCBOOKTOMAN
+ %.1: %.1.sgml
+-	docbook-to-man $< > $@
++	$(DOCBOOKTOMAN) $< > $@
+ else
+ %.1: %.1.sgml
+ endif

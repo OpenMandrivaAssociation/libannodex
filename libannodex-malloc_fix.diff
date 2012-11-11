@@ -1,0 +1,10 @@
+--- src/libannodex/Makefile.am	2005-09-19 00:50:33.000000000 -0400
++++ src/libannodex/Makefile.am.oden	2008-06-27 19:35:27.000000000 -0400
+@@ -55,6 +55,6 @@
+ 	content_type.c
+ 
+ libannodex_la_LDFLAGS = -version-info @SHARED_VERSION_INFO@ @SHLIB_VERSION_ARG@
+-libannodex_la_LIBADD = $(anx_write_libs) $(OGGZ_LIBS)
++libannodex_la_LIBADD = $(anx_write_libs) $(OGGZ_LIBS) -lm
+ libannodex_la_DEPENDENCIES = $(anx_write_libs)
+ 

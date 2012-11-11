@@ -1,0 +1,28 @@
+--- src/importers/Makefile.am	2005-09-19 06:50:33.000000000 +0200
++++ src/importers/Makefile.am.oden	2006-08-06 15:40:18.000000000 +0200
+@@ -30,21 +30,21 @@
+ 	$(import_sndfile)
+ 
+ libanx_import_anx_la_SOURCES = anx_import_anx.c
+-libanx_import_anx_la_LDFLAGS = -module -version-info $(SHARED_VERSION_INFO)
++libanx_import_anx_la_LDFLAGS = -module -avoid-version
+ libanx_import_anx_la_LIBADD = $(ANNODEX_LIBS)
+ 
+ libanx_import_cmml_la_SOURCES = anx_import_cmml.c
+ libanx_import_cmml_la_CFLAGS = $(CMML_CFLAGS)
+-libanx_import_cmml_la_LDFLAGS = -module -version-info $(SHARED_VERSION_INFO)
++libanx_import_cmml_la_LDFLAGS = -module -avoid-version
+ libanx_import_cmml_la_LIBADD = $(ANNODEX_LIBS) $(CMML_LIBS)
+ 
+ libanx_import_ogg_la_SOURCES = anx_import_ogg.c
+ libanx_import_ogg_la_CFLAGS = $(OGG_CFLAGS)
+-libanx_import_ogg_la_LDFLAGS = -module -version-info $(SHARED_VERSION_INFO)
++libanx_import_ogg_la_LDFLAGS = -module -avoid-version
+ libanx_import_ogg_la_LIBADD = $(ANNODEX_LIBS)
+ 
+ libanx_import_sndfile_la_SOURCES = anx_import_sndfile.c
+ libanx_import_sndfile_la_CFLAGS = $(SNDFILE_CFLAGS)
+-libanx_import_sndfile_la_LDFLAGS = -module -version-info $(SHARED_VERSION_INFO)
++libanx_import_sndfile_la_LDFLAGS = -module -avoid-version
+ libanx_import_sndfile_la_LIBADD = $(ANNODEX_LIBS) @SNDFILE_LIBS@
+ 
