@@ -5,7 +5,7 @@
 Summary:	Library for annotating and indexing networked media
 Name:		libannodex
 Version:	0.7.3
-Release:	%mkrel 8
+Release:	9
 Group:		System/Libraries
 License:	BSD
 URL:		http://www.annodex.net/
@@ -21,9 +21,8 @@ BuildRequires:	docbook-utils
 BuildRequires:	libogg-devel >= 1.0
 BuildRequires:	liboggz-devel >= 0.9.1
 BuildRequires:	libcmml-devel >= 0.8
-BuildRequires:	libsndfile-devel
+BuildRequires:	pkgconfig(sndfile)
 BuildRequires:	expat-devel
-BuildRoot:	%{_tmppath}/%{name}-%{version}-root
 
 %description
 libannodex is a library to provide reading and writing of Annodex files and
@@ -72,7 +71,7 @@ media library.
 rm -f configure
 libtoolize --copy --force --ltdl; aclocal -I m4; autoconf; automake
 
-%configure2_5x
+%configure2_5x --disable-static
 
 %make
 
@@ -80,23 +79,10 @@ libtoolize --copy --force --ltdl; aclocal -I m4; autoconf; automake
 make check
 
 %install
-rm -rf %{buildroot}
-
 %makeinstall_std
 
 # cleanup
 rm -rf %{buildroot}%{_docdir}/libannodex
-
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
-
-%clean
-rm -rf %{buildroot}
 
 %files -n %{libname}
 %defattr(-,root,root)
@@ -111,13 +97,57 @@ rm -rf %{buildroot}
 %dir %{_includedir}/annodex
 %{_includedir}/annodex/*.h
 %{_libdir}/*.so
-%{_libdir}/*.a
-%{_libdir}/*.la
-%{_libdir}/annodex/importers/*.a
-%{_libdir}/annodex/importers/*.la
 %{_libdir}/pkgconfig/annodex.pc
 
 %files tools
 %defattr(-,root,root)
 %{_bindir}/anx*
 %{_mandir}/man1/*
+
+
+%changelog
+* Sun Dec 05 2010 Oden Eriksson <oeriksson@mandriva.com> 0.7.3-8mdv2011.0
++ Revision: 609733
+- rebuild
+
+* Fri May 21 2010 Frederic Crozat <fcrozat@mandriva.com> 0.7.3-7mdv2010.1
++ Revision: 545651
+- rebuild with latest liboggz
+
+* Fri Sep 04 2009 Thierry Vignaud <tv@mandriva.org> 0.7.3-6mdv2010.0
++ Revision: 429716
+- rebuild
+
+* Sat Jun 28 2008 Oden Eriksson <oeriksson@mandriva.com> 0.7.3-5mdv2009.0
++ Revision: 229605
+- added P3 to make it build (-lm)
+
+  + Pixel <pixel@mandriva.com>
+    - do not call ldconfig in %%post/%%postun, it is now handled by filetriggers
+
+  + Olivier Blin <oblin@mandriva.com>
+    - restore BuildRoot
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - kill re-definition of %%buildroot on Pixel's request
+
+* Tue Sep 18 2007 Guillaume Rousse <guillomovitch@mandriva.org> 0.7.3-4mdv2008.0
++ Revision: 89832
+- rebuild
+
+* Sun Sep 09 2007 Oden Eriksson <oeriksson@mandriva.com> 0.7.3-3mdv2008.0
++ Revision: 83568
+- new devel naming
+
+
+* Sat Dec 09 2006 Oden Eriksson <oeriksson@mandriva.com> 0.7.3-2mdv2007.0
++ Revision: 94087
+- bump release
+- fix deps (expat-devel)
+- Import libannodex
+
+* Mon Aug 07 2006 Oden Eriksson <oeriksson@mandriva.com> 0.7.3-1mdv2007.0
+- initial Mandriva package (fc5 extras import)
+- added P1 from debian
+- added P2 to avoid the version in the module file names
+
