@@ -90,12 +90,8 @@ media library.
 %autosetup -p0
 
 %build
-rm -f configure
-libtoolize --copy --force --ltdl; aclocal -I m4; autoconf; automake --add-missing
-#autoreconf -fi
-
+%config_update
 %configure\
-	--disable-static
 %make_build
 
 %install
