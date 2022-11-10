@@ -5,7 +5,7 @@
 Summary:	Library for annotating and indexing networked media
 Name:		libannodex
 Version:	0.7.3
-Release:	11
+Release:	12
 License:	BSD
 Group:		System/Libraries
 Url:		http://www.annodex.net/
@@ -87,22 +87,19 @@ media library.
 #----------------------------------------------------------------------------
 
 %prep
-%setup -q
-%patch0 -p0
-%patch1 -p0
-%patch2 -p0
-%patch3 -p0
+%autosetup -p0
 
 %build
 rm -f configure
 libtoolize --copy --force --ltdl; aclocal -I m4; autoconf; automake --add-missing
 #autoreconf -fi
 
-%configure2_5x --disable-static
-%make
+%configure\
+	--disable-static
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 # cleanup
 rm -rf %{buildroot}%{_docdir}/libannodex
