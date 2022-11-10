@@ -91,7 +91,7 @@ media library.
 
 %build
 %config_update
-%configure\
+%configure
 %make_build
 
 %install
