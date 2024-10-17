@@ -8,7 +8,7 @@ Version:	0.7.3
 Release:	12
 License:	BSD
 Group:		System/Libraries
-Url:		http://www.annodex.net/
+Url:		https://www.annodex.net/
 Source0:	http://www.annodex.net/software/libannodex/download/%{name}-%{version}.tar.bz2
 Patch0:		libannodex.man.patch
 Patch1:		libannodex-0.7.3-gcc4.diff
