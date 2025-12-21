@@ -14,6 +14,11 @@ Patch0:		libannodex.man.patch
 Patch1:		libannodex-0.7.3-gcc4.diff
 Patch2:		libannodex-0.7.3-avoid-version.diff
 Patch3:		libannodex-malloc_fix.diff
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	doxygen
 BuildRequires:	docbook-utils
 BuildRequires:	pkgconfig(cmml)
